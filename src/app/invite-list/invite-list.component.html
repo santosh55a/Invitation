@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of (users$ | async);">
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+      <td *ngIf="user.uniqueUser;then content else other_content"></td>
+      <ng-template #content>Sent Mail Successfully.</ng-template>
+      <ng-template #other_content>User already exists...</ng-template>
+    </tr>
+  </tbody>
+</table>
+<div>{{ getUniqueCount(users$ | async) }} users Successfully invited</div>
